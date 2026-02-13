@@ -1,0 +1,4 @@
+.cache/
+build/
+examples/input/parallel_test_data*
+examples/output/*

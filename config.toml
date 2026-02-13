@@ -1,0 +1,15 @@
+[main]
+    input = './examples/input'
+    
+    output = './examples/output'
+    
+    filename_mask = ['standart']
+
+[main.metrics]
+    price_median = true
+
+    price_mean = true
+
+    price_standart_deviation = true
+    
+    price_percentiles = true
