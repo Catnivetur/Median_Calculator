@@ -15,6 +15,10 @@
 ## Требования
 
 Программа написана с использованием стандарта C++ 23.
+Протестированные платформы: Arch Linux и Windows 11.
+Протестированные компиляторы:
+- clang, GCC 15.2 (Arch Linux);
+- clang, MSVC (Windows 11).
 
 ### Зависимости
 
@@ -23,17 +27,38 @@
 - spdlog https://github.com/gabime/spdlog.git
 - tom++ https://github.com/marzer/tomlplusplus.git
 
+Системы сборки: Ninja или Unix Makefiles (только для Linux).
+
 ## Сборка проекта
 
-Из директории с программой:
+Запуск из директории с программой.
+Для сборки рекомендуется использование компилятора clang. Указать нужный компилятор можно добавив параметр `-DCMAKE_C_COMPILER={компилятор C}` и `-DCMAKE_CXX_COMPILER={компилятор C++}` в строку как аргументы.
+Сборка с использованием Ninja:
 ```bash
-    cmake --preset default
-    cmake --build --preset default
+cmake --preset default-ninja
+cmake --build --preset default-ninja
 ```
-или
+Сборка с использованием Unix Makefiles (Linux only):
 ```bash
-    cmake --preset default
-    cmake --build build
+cmake --preset default-makefiles
+cmake --build --preset default-makefiles
+```
+
+Сборка с использованием MSVC (Windows only):
+```bash
+cmake --preset msvc
+cmake --build --preset msvc --config Release
+```
+
+Пример с явным указанием компилятора clang для Windows:
+```bash
+cmake --preset default-ninja -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl
+cmake --build --preset default-ninja
+```
+Для Linux:
+```bash
+cmake --preset default-ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+cmake --build --preset default-ninja
 ```
 
 ## Запуск приложения

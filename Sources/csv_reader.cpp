@@ -294,7 +294,13 @@ namespace csv_reader {
     void convert_to_numeric (std::pair<uint64_t, double> &row, uint32_t index, std::string &field, bool &conversion_valid)
     {
         try {
-            auto temp = std::stod(field);
+            size_t pos = 0;
+            auto temp = std::stod(field, &pos);
+            if (pos != field.length())
+            {
+                conversion_valid = false;
+                return;
+            }
             if (temp < 0)
             {
                 conversion_valid = false;
@@ -305,7 +311,7 @@ namespace csv_reader {
                 row.second = temp;
             }
             else {
-                row.first = temp;
+                row.first = static_cast<uint64_t>(temp);
             }
         }
         catch (const std::invalid_argument& e) {
