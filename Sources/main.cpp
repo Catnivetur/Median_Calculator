@@ -8,8 +8,6 @@ namespace po = boost::program_options;
 
 int main(int argc, char* argv[])
 {
-    // try {
-        // Getting arguments from console
     spdlog::info("Program starting");
     po::options_description desc("options");
     desc.add_options()
@@ -112,9 +110,5 @@ int main(int argc, char* argv[])
     
     spdlog::info("Program finished");
 
-    // } catch (const std::exception& e) {
-    //     spdlog::error(e.what());
-    //     return 1;
-    // }
     return 0;
 }
